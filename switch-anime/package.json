@@ -1,0 +1,27 @@
+{
+  "titleId": "019fcbdbb9810000",
+  "name": "switch-anime",
+  "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "build": "esbuild --bundle --sourcemap --sources-content=false --target=es2022 --format=esm src/main.ts --outfile=romfs/main.js && nxjs-pack",
+    "nro": "nxjs-pack"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.17.19",
+    "nxjs-pack": "^0.0.28",
+    "nxjs-runtime": "^0.0.29"
+  },
+  "author": {
+    "name": "fortmea",
+    "email": "joao.amadeu@unifio.edu.br"
+  },
+  "dependencies": {
+    "@ruffle-rs/ruffle": "^0.1.0-nightly.2024.1.24",
+    "color-hash": "^2.0.2",
+    "kleur": "^4.1.5",
+    "sisteransi": "^1.0.5"
+  }
+}
