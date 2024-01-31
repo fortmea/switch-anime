@@ -23,21 +23,6 @@ export class RoundedCard extends BaseWidget {
 
     }
 
-    drawRoundedRect(x: number, y: number, width: number, height: number, radius: number, color: string) {
-        const ctx = super.getContext();
-        ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.arcTo(x + width, y, x + width, y + height, radius);
-        ctx.arcTo(x + width, y + height, x, y + height, radius);
-        ctx.arcTo(x, y + height, x, y, radius);
-        ctx.arcTo(x, y, x + width, y, radius);
-        ctx.closePath();
-
-        // Fill the rounded rectangle
-        ctx.fillStyle = color; // Change the color as needed
-        ctx.fill();
-    }
-
     drawCard() {
         const r = parseInt(this.color.substring(1, 3), 16);
         const g = parseInt(this.color.substring(3, 5), 16);

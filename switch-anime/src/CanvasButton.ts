@@ -9,7 +9,7 @@ export class CanvasButton extends BaseWidget {
   }
 
   public drawButton() {
-    
+
     this.context.fillStyle = this.backgroundColor; // Background color
     this.context.fillRect(this.x, this.y, this.width, this.height);
 
@@ -20,6 +20,13 @@ export class CanvasButton extends BaseWidget {
     this.context.textBaseline = 'middle';
     this.context.fillText(this.text, this.x + this.width / 2, this.y + this.height / 2);
     this.addTouchEvent();
+  }
+
+  public setText(text: string) {
+    this.text = text;
+  }
+  getText() {
+    return this.text;
   }
 
 }

@@ -11,6 +11,7 @@ import { consts } from './consts';
 import { RoundedCard } from './RoundedCard';
 import { BaseWidget } from './baseWidget';
 import { GifWidget } from './gif';
+import { RoundedButton } from './roundedButton';
 var card: Card;
 var image = new Image();
 var anime: Anime = new Anime({});
@@ -30,6 +31,7 @@ function loadimage(imageurl: string) {
 
         card.image = image;
         states();
+        btn3.removeTouchEvent();
         stateManager.restoreState('initial');
 
     });
@@ -59,11 +61,15 @@ const ctx = screen.getContext("2d");
 
 const messageDrawer = new CanvasMessage(screen);
 const stateManager = new CanvasStateManager(ctx);
-const btn2 = new RoundedCard(screen, null, consts.colors[2], 1, screen.width - 200, screen.height - 200, 100, 100, 16);
-btn2.child = new CanvasButton(screen, 'Clique aqui1', 50, 20, 100, 50, "#fff", '#3498db', () => {
+const btn2 = new RoundedButton(screen, 'Clique aqui', 50, 20, 100, 50, "#fff", '#3498db', 20, () => {
     stateManager.restoreState('initial');
-});
-const base = new BaseWidget(screen, 50, 20, 200, 100, "#fff", '#3498db', () => { }, () => { });
+}
+);
+
+
+const btn3 = new RoundedButton(screen, 'Clique aqui2', 50, 20, 100, 50, "#fff", '#3498db', 20, () => {
+    console.log('teste');
+})
 
 const btn1 = new RoundedCard(screen, null, consts.colors[2], 1, screen.width - 200, screen.height - 200, 100, 100, 16);
 btn1.child = new CanvasButton(screen, 'Clique aqui', btn1.x, btn1.y, btn1.cardWidth, btn1.cardHeight, "white", "transparent", () => {
@@ -75,11 +81,12 @@ start();
 function start() {
     //const gif = new GifWidget(screen, '/loading.gif', 0, 0, 300, 300);
     //gif.draw();
+
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, screen.width, screen.height);
     ctx.fillStyle = '#000000';
     ctx.fillText('Carregando...', (screen.width / 2), screen.height / 2);
-
+    btn3.draw();
 }
 
 function states() {
