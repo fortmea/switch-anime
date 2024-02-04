@@ -1,3 +1,5 @@
+import { ScreenObject } from "../util/screenObject";
+
 export class BaseWidget {
     protected canvas: Screen;
     protected context: CanvasRenderingContext2D;
@@ -11,16 +13,16 @@ export class BaseWidget {
     protected drawFunction: () => void;
     protected child: BaseWidget | null = null;
 
-    constructor(canvas: Screen, x: number, y: number, width: number, height: number, textColor?: string, backgroundColor?: string, onClick?: () => void, drawFunction?: () => void, child?: BaseWidget | null) {
-        this.canvas = canvas;
-        this.context = canvas.getContext('2d')!;
+    constructor(x: number, y: number, width: number, height: number, textColor?: string, backgroundColor?: string, onClick?: () => void | null, drawFunction?: () => void, child?: BaseWidget | null) {
+        this.canvas = ScreenObject.getInstance().getScreen();
+        this.context = this.canvas.getContext('2d')!;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.textColor = textColor || "#fff";
         this.backgroundColor = backgroundColor || '#3498db';
-        this.onClick = onClick!;
+        this.onClick = onClick ?? (() => { });
         this.drawFunction = drawFunction!;
         this.child = child!;
     }
@@ -93,7 +95,7 @@ export class BaseWidget {
     }
 
 
-    public draw() {
+    public readonly draw = () => {
         this.drawFunction();
         this.addTouchEvent();
         if (this.child) {

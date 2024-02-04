@@ -1,19 +1,19 @@
-import { CanvasButton } from "./CanvasButton";
+import { CanvasButton } from "./canvasButton";
 import { RoundedShadow } from "./roundedShadow";
 
 //rounded button class, based on the canvasButton and Rounded card and shadow classes
 export class RoundedButton extends CanvasButton {
     radius: number;
-    constructor(screen: Screen, text: string, x: number, y: number, width: number, height: number, color: string | undefined, backgroundColor: string | undefined, radius: number, onClick: () => void) {
-        super(screen, text, x, y, width, height, color, backgroundColor, onClick);
+    constructor(text: string, x: number, y: number, width: number, height: number, color: string | undefined, backgroundColor: string | undefined, radius: number, onClick: () => void) {
+        super(text, x, y, width, height, color, backgroundColor, onClick);
         this.radius = radius;
-        super.setDrawFunction(this.drawButton);
+        super.setDrawFunction(this.drawRoundedButton);
         super.setOnClick(onClick);
         
         this.setText(text);
     }
     
-    draw() {
+    drawRoundedButton() {
         super.addTouchEvent();
         super.drawRoundedRect(this.x, this.y, this.width, this.height, this.radius, this.backgroundColor);
         //write text

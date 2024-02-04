@@ -6,8 +6,8 @@ export class RoundedShadow extends BaseWidget {
     color: any;
     blur: any;
     depth: any;
-    constructor(screen: any, child: BaseWidget, color: any, blur: any, depth: any, radius: number) {
-        super(screen, child.getX(), child.getY(), child.getWidth(), child.getHeight());
+    constructor(child: BaseWidget, color: any, blur: any, depth: any, radius: number) {
+        super(child.getX(), child.getY(), child.getWidth(), child.getHeight());
         this.child = child;
         this.color = color;
         this.blur = blur;

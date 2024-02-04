@@ -9,8 +9,8 @@ export class RoundedCard extends BaseWidget {
     public cardWidth = 200;
     public cardHeight = 150;
     public cardRadius = 20;
-    constructor(screen: Screen, child: any, color: string = '#ffffff', alpha: number = 1, x: number = 0, y: number = 0, cardWidth: number = 200, cardHeight: number = 150, cardRadius: number = 20) {
-        super(screen, x, y, cardWidth, cardHeight, color, color, () => { }, child); // Add empty onClick and drawFunction arguments
+    constructor(child: any, color: string = '#ffffff', alpha: number = 1, x: number = 0, y: number = 0, cardWidth: number = 200, cardHeight: number = 150, cardRadius: number = 20) {
+        super(x, y, cardWidth, cardHeight, color, color, () => { }, child); // Add empty onClick and drawFunction arguments
         super.setDrawFunction(this.drawCard); // Set the drawCard function as the drawFunction
         this.child = child;
         this.color = color;

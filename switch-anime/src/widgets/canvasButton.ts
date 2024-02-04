@@ -2,8 +2,8 @@ import { BaseWidget } from "./baseWidget";
 
 export class CanvasButton extends BaseWidget {
   private text: string;
-  constructor(canvas: Screen, text: string, x: number, y: number, width: number, height: number, textColor: string = "#fff", backgroundColor: string = '#3498db', onClick: () => void) {
-    super(canvas, x, y, width, height, textColor, backgroundColor, onClick, () => { }, null);
+  constructor(text: string, x: number, y: number, width: number, height: number, textColor: string = "#fff", backgroundColor: string = '#3498db', onClick: () => void) {
+    super(x, y, width, height, textColor, backgroundColor, onClick, () => { }, null);
     super.setDrawFunction(this.drawButton);
     this.text = text;
   }
