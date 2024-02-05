@@ -8,7 +8,8 @@
     "skipLibCheck": true,
     "types": [
       "nxjs-runtime"
-    ]
+    ],
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/**/*.ts",
