@@ -27,7 +27,7 @@ export class CanvasStateManager {
       objects.forEach((obj) => obj.draw());
       this.callback();
     } else {
-      console.error(`State with key '${key}' not found.`);
+      console.error(`State with key '${key}' not found or empty.`);
     }
   }
 

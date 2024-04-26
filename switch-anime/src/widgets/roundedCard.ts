@@ -1,17 +1,17 @@
 import { BaseWidget } from "./baseWidget";
 
 export class RoundedCard extends BaseWidget {
-    public child: any; // You can replace 'any' with the specific type of your child object
+    public child: BaseWidget; 
     public color: string;
-    public alpha: number = 1; // Add alpha property
-    public x: number = 0; // Add x property
-    public y: number = 0; // Add y property
+    public alpha: number = 1;
+    public x: number = 0;
+    public y: number = 0;
     public cardWidth = 200;
     public cardHeight = 150;
     public cardRadius = 20;
     constructor(child: any, color: string = '#ffffff', alpha: number = 1, x: number = 0, y: number = 0, cardWidth: number = 200, cardHeight: number = 150, cardRadius: number = 20) {
-        super(x, y, cardWidth, cardHeight, color, color, () => { }, child); // Add empty onClick and drawFunction arguments
-        super.setDrawFunction(this.drawCard); // Set the drawCard function as the drawFunction
+        super(x, y, cardWidth, cardHeight, color, color, () => { }, child);
+        super.setDrawFunction(this.drawCard);
         this.child = child;
         this.color = color;
         this.alpha = alpha;
@@ -29,6 +29,6 @@ export class RoundedCard extends BaseWidget {
         const b = parseInt(this.color.substring(5, 7), 16);
 
 
-        this.drawRoundedRect(this.x, this.y, this.cardWidth, this.cardHeight, this.cardRadius, `rgba(${r},${g},${b}, ${this.alpha})`); // Background color
+        this.drawRoundedRect(this.x, this.y, this.cardWidth, this.cardHeight, this.cardRadius, `rgba(${r},${g},${b}, ${this.alpha})`);
     }
 }

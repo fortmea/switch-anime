@@ -55,7 +55,7 @@ eventEmitter.on('animeLoaded', (data) => {
     //console.log('Anime loaded:', animeId);
     const anime = data.anime as Anime;
     const image = data.image as Image;
-    
+
     stateManager.addToState(stateManager.getCurrentState(), new Shadow(new Card(image, anime.data.title, 200, 100, 400, 400, consts.colors[2]), consts.colors[2], 0.3, 15));
     stateManager.reloadState();
 })

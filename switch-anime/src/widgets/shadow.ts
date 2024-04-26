@@ -8,11 +8,11 @@ export class Shadow extends BaseWidget {
     constructor(object: Card, color: string, blur: number, depth: number) {
         super(object.x, object.y, object.width, object.height, color);
 
-        super.setChild(object)
         this.backgroundColor = color;
         this.blur = blur;
         this.depth = depth;
         this.setDrawFunction(() => this.drawShadow());
+        this.child = object;
     }
 
     drawShadow() {

@@ -8,7 +8,7 @@ export class Card extends BaseWidget {
   width: number;
   height: number;
   color: string = '#ffffff';
-  onclick: () => void; // Added onclick callback
+  onclick: () => void; 
 
   constructor(image: Image, text: string, x: number, y: number, width: number, height: number, color: string = '#ffffff', onclick: (() => void) | null = null) {
     super(x, y, width, height, color, color, onclick ?? (() => { }));
@@ -38,9 +38,9 @@ export class Card extends BaseWidget {
     this.context.textBaseline = 'middle';
     const textX = this.x + this.width / 2;
     const textY = this.y + this.height - 40;
-    this.context.fillStyle = `rgba(${r},${g},${b}, 0.5)`; // Background color
+    this.context.fillStyle = `rgba(${r},${g},${b}, 0.5)`;
     this.context.fillRect(this.x + 50, textY - 20, this.width - 100, 40);
-    this.context.fillStyle = consts.colors[4]; // Text color
+    this.context.fillStyle = consts.colors[4]; 
     this.context.fillText(this.text, textX, textY);
   }
 }

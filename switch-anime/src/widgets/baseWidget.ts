@@ -12,8 +12,10 @@ export class BaseWidget {
     protected onClick: () => void;
     protected drawFunction: () => void;
     protected child: BaseWidget | null = null;
+    protected isAsync: boolean | null = null;
+    protected isLoaded: boolean | null = null;
 
-    constructor(x: number, y: number, width: number, height: number, textColor?: string, backgroundColor?: string, onClick?: () => void | null, drawFunction?: () => void, child?: BaseWidget | null) {
+    constructor(x: number, y: number, width: number, height: number, textColor?: string, backgroundColor?: string, onClick?: () => void | null, isAsync?: boolean | null, isLoaded?: boolean | null, drawFunction?: () => void, child?: BaseWidget | null) {
         this.canvas = ScreenObject.getInstance().getScreen();
         this.context = this.canvas.getContext('2d')!;
         this.x = x;
@@ -25,6 +27,8 @@ export class BaseWidget {
         this.onClick = onClick ?? (() => { });
         this.drawFunction = drawFunction!;
         this.child = child!;
+        this.isAsync = isAsync ?? false;
+        this.isLoaded = isLoaded ?? true;
     }
     //add getters and setters for every property
     public getCanvas(): Screen {
@@ -87,20 +91,40 @@ export class BaseWidget {
     public setDrawFunction(drawFunction: () => void): void {
         this.drawFunction = drawFunction;
     }
-    public getChild(): BaseWidget | null {
-        return this.child;
+    public getIsAsync(): boolean | null {
+        return this.isAsync;
     }
-    public setChild(child: BaseWidget | null): void {
-        this.child = child;
+    public setIsAsync(isAsync: boolean): void {
+        this.isAsync = isAsync;
+    }
+    public setIsLoaded(isLoaded: boolean): void {
+        this.isLoaded = isLoaded;
+    }
+    public getIsLoaded(): boolean | null {
+        return this.isLoaded;
     }
 
 
     public readonly draw = () => {
-        this.drawFunction();
-        this.addTouchEvent();
-        if (this.child) {
-            this.child.draw();
+        if (this.isLoaded === false) {
+            this.drawLoading();
         }
+        else {
+            this.drawFunction();
+            this.addTouchEvent();
+            if (this.child) {
+                this.child.draw();
+            }
+        }
+    }
+
+    private drawLoading(){
+        this.context.fillStyle = this.textColor; // Text color
+        const fontsize = this.height * .15;
+        this.context.font = `${fontsize}px system-ui`;
+        this.context.textAlign = 'center';
+        this.context.textBaseline = 'middle';
+        this.context.fillText("Loading...", this.x + this.width / 2, this.y + this.height / 2);
     }
 
     public removeTouchEvent() {
@@ -121,8 +145,7 @@ export class BaseWidget {
         ctx.arcTo(x, y, x + width, y, radius);
         ctx.closePath();
 
-        // Fill the rounded rectangle
-        ctx.fillStyle = color; // Change the color as needed
+        ctx.fillStyle = color; 
         ctx.fill();
     }
 
